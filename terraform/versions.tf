@@ -1,14 +1,6 @@
 terraform {
-
-  # https://www.terraform.io/docs/language/expressions/references.html#sensitive-resource-attributes
-  # TODO: this currently makes builds fail intermittently
-  # experiments = [provider_sensitive_attrs]
-
-  # https://github.com/hashicorp/terraform/releases
-  # https://github.com/hashicorp/terraform/blob/main/CHANGELOG.md
   required_version = ">= 0.14.9"
 
-  # terraform remote state
   backend "remote" {
     organization = "steve727"
 
@@ -17,8 +9,6 @@ terraform {
     }
   }
   
-  # providers (pin all versions)
-  # versioning syntax: https://www.terraform.io/docs/language/expressions/version-constraints.html#version-constraint-syntax
   required_providers {
 
     # https://github.com/terraform-providers/terraform-provider-azurerm/releases
@@ -72,8 +62,6 @@ terraform {
   }
 }
 
-# must include blank features block
-# https://github.com/terraform-providers/terraform-provider-azurerm/releases
 provider "azurerm" {
   features {}
 }
