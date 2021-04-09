@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:latest
 
 ENV TERRAFORM_VERSION=0.14.9
 ENV PACKER_VERSION=1.7.2
@@ -51,9 +51,9 @@ RUN sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS
 RUN unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin
 RUN rm -f packer_${PACKER_VERSION}_linux_amd64.zip
 
-ADD https://github.com/vmware/govmomi/releases/download/${GOVC_VERSION}/govc_linux_386.gz ./
-RUN gunzip govc_linux_386.gz
-RUN mv govc_linux_386 /bin/govc
+ADD https://github.com/vmware/govmomi/releases/download/v0.24.0/govc_linux_amd64.gz ./
+RUN gunzip govc_linux_amd64.gz
+RUN mv govc_linux_amd64 /bin/govc
 RUN chmod +x /bin/govc
 
 ADD https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl /bin
