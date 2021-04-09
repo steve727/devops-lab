@@ -10,9 +10,9 @@ RUN echo "===> Installing sudo to emulate normal OS behavior..."  && \
     \
     \
     echo "===> Adding Python runtime..."  && \
-    apk --update add python py-pip openssl ca-certificates    && \
+    apk --update add python3 python3-pip openssl ca-certificates    && \
     apk --update add --virtual build-dependencies \
-                python-dev libffi-dev openssl-dev build-base  && \
+                python3-dev libffi-dev openssl-dev build-base  && \
     pip install --upgrade pip cffi                            && \
     \
     \
