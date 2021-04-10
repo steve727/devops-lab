@@ -5,15 +5,18 @@ ENV PACKER_VERSION=1.7.2
 ENV GOVC_VERSION=v0.24.0
 ENV KUBECTL_VERSION=v1.20.0
 
-RUN echo "===> Installing sudo to emulate normal OS behavior..."  && \
-    apk --update add sudo                                         && \
-    \
-    \
-    echo "===> Adding Python runtime..."  && \
-    apk --update add python3 python3-pip openssl ca-certificates    && \
+ 
+    # echo "===> Installing sudo to emulate normal OS behavior..."  && \
+    # apk --update add sudo                                         && \
+    #\
+    #\
+RUN echo "===> Adding Python runtime..."  && \
+    apk --update add py3-pip && \
+    pip install --upgrade pip                   && \
+    apk --update add openssl ca-certificates    && \
     apk --update add --virtual build-dependencies \
                 python3-dev libffi-dev openssl-dev build-base  && \
-    pip install --upgrade pip cffi                            && \
+    pip install --upgrade cffi                  && \
     \
     \
     echo "===> Installing Ansible..."  && \
