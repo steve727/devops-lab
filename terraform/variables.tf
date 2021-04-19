@@ -1,8 +1,8 @@
 # Variables
 
-# region Versions
-# version used for both main AKS API service and default node pool
 
+#region Versions
+# version used for both main AKS API service, and default node pool
 # https://github.com/Azure/AKS/releases
 # az aks get-versions --location eastus --output table
 variable "kubernetes_version" {
@@ -27,19 +27,19 @@ variable "nginx_chart_version" {
 # https://hub.helm.sh/charts/jetstack/cert-manager
 # helm search repo jetstack/cert-manager
 variable "cert_manager_chart_version" {
-  default = "v1.3.0"
+  default = "v1.3.1"
 }
 
 # https://github.com/vmware-tanzu/helm-charts/releases
 # helm search repo vmware-tanzu/velero
 # * also update terraform/helm/velero_values.yaml
 variable "velero_chart_version" {
-  default = "2.16.0"
+  default = "2.17.2"
 }
 
 # https://hub.docker.com/r/velero/velero/tags
 variable "velero_image_tag" {
-  default = "v1.5.4"
+  default = "v1.6.0"
 }
 
 # https://hub.docker.com/r/sonatype/nexus3/tags
@@ -72,7 +72,7 @@ variable "aad_pod_identity_chart_version" {
 # https://github.com/bitnami/charts/blob/master/bitnami/external-dns/Chart.yaml#L21
 # helm search repo bitnami/external-dns
 variable "external_dns_chart_version" {
-  default = "4.9.4"
+  default = "4.10.0"
 }
 
 # https://github.com/weaveworks/kured/tree/master/charts/kured
@@ -86,18 +86,21 @@ variable "kured_image_tag" {
   default = "1.6.1"
 }
 
+
 # argo cd
 # https://github.com/argoproj/argo-helm/blob/master/charts/argo-cd/Chart.yaml#L5
 # helm search repo argo/argo-cd
 variable "argocd_chart_version" {
-  default = "3.0.0"
+  default = "3.1.1"
 }
 
 # https://hub.docker.com/r/argoproj/argocd/tags
 variable "argocd_image_tag" {
-  default = "v2.0.0"
+  default = "v2.0.1"
 }
 #endregion Versions
+
+
 
 # Common
 variable "prefix" {
@@ -145,6 +148,8 @@ variable "key_vault_resource_group_name" {
   default = "__KEY_VAULT_RESOURCE_GROUP_NAME__"
 }
 
+
+
 # AKS
 variable "azurerm_kubernetes_cluster_name" {
   default = "__AKS_CLUSTER_NAME__"
@@ -171,6 +176,8 @@ variable "aks_config_path" {
   default = "./azurek8s_config"
 }
 
+
+
 # Agent Pool
 variable "agent_pool_node_count" {
   default = 1
@@ -193,6 +200,24 @@ variable "agent_pool_profile_name" {
 }
 
 variable "agent_pool_profile_vm_size" {
+  # https://azureprice.net/?region=ukwest&currency=GBP
+  # Standard_D2s_v3 - £0.086455 per hour
+  # 2 x CPU, 8GB RAM, 4 x Data Disks
+  # https://docs.microsoft.com/en-us/azure/virtual-machines/dv3-dsv3-series#dsv3-series
+
+  # Standard_DS2_v2 - £0.130429 per hour
+  # 2 x CPU, 7GB RAM, 8 x Data Disks
+  # https://docs.microsoft.com/en-us/azure/virtual-machines/dv2-dsv2-series?toc=/azure/virtual-machines/linux/toc.json&bc=/azure/virtual-machines/linux/breadcrumb/toc.json#dsv2-series
+
+  # ! Standard_B4ms can cause performance issues
+  # Standard_B4ms   - £0.140863 per hour
+  # 4 x CPU, 16GB RAM, 8 x Data Disks
+
+  # Standard_D4s_v3 - £0.172911 per hour
+  # 4 x CPU, 16GB RAM, 8 x Data Disks
+
+  # Standard_F8s_v2 - £0.301104 per hour
+  # 8 x CPU, 16GB RAM, 16 x Data Disks
   default = "Standard_D4s_v3"
 }
 
@@ -203,6 +228,8 @@ variable "agent_pool_profile_os_type" {
 variable "agent_pool_profile_disk_size_gb" {
   default = 30
 }
+
+
 
 # Velero
 variable "velero_enabled" {
@@ -241,6 +268,8 @@ variable "velero_backup_included_namespaces" {
   ]
 }
 
+
+
 # DNS
 variable "dns_resource_group_name" {
   default = "__DNS_RG_NAME__"
@@ -254,6 +283,8 @@ variable "azureidentity_external_dns_yaml_path" {
   default = "files/azureIdentity-external-dns.yaml.tpl"
 }
 
+
+
 # Function Apps
 variable "func_app_sas_expires_in_hours" {
   # 2190h = 3 months
@@ -263,6 +294,8 @@ variable "func_app_sas_expires_in_hours" {
 variable "ifttt_webhook_key" {
   default = "__IFTTT_WEBHOOK_KEY__"
 }
+
+
 
 # Nexus
 variable "nexus_base_domain" {
@@ -285,10 +318,14 @@ variable "nexus_tls_secret_name" {
   default = "__K8S_TLS_SECRET_NAME__"
 }
 
+
+
 # akv2k8s
 variable "nexus_cert_sync_yaml_path" {
   default = "files/nexus-akvs-certificate-sync.yaml"
 }
+
+
 
 # argo cd
 variable "argocd_admins_aad_group_name" {
