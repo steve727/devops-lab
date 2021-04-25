@@ -6,7 +6,7 @@
 		"dockerfile": "Dockerfile",
 		"args": {
 			"TERRAFORM_VERSION": "0.15.0",
-			"TFLINT_VERSION": "0.22.0",
+			"TFLINT_VERSION": "0.9.0",
 			"INSTALL_AZURE_CLI": "true",
 			"INSTALL_DOCKER": "true",
 			"INSTALL_NODE": "true"
