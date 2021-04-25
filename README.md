@@ -9,7 +9,7 @@ git config --global core.editor vim
 git config --global init.defaultBranch main
 git config --list
 ```
-[docker install debian](https://docs.docker.com/engine/install/debian/)
+[docker installation on debian](https://docs.docker.com/engine/install/debian/)
 
 ### .devcontainer
 `cat ~/repos/devops-lab/.devcontainer/devcontainer.json`
