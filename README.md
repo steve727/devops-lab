@@ -19,4 +19,6 @@ git config --list
 ```bash
 cd ~/repos/devops-lab
 docker build -t steve727/devcontainer .
+docker run steve727/devcontainer
+docker push steve727/devcontainer
 ```
