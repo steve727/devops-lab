@@ -13,7 +13,7 @@ git config --list
 
 [my docker notes](https://github.com/steve727/docs/blob/main/docker.md)
 
-### .devcontainer
+### [devcontainer](https://github.com/microsoft/vscode-dev-containers) build
 `cat ~/repos/devops-lab/.devcontainer/devcontainer.json`
 
 ```bash
