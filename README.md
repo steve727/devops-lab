@@ -1,4 +1,4 @@
-## devops-lab repo for testing DevOps tools and processes
+## steve727's repo for testing various DevOps tools and processes
 
 [git first time setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
 ```bash
@@ -16,7 +16,5 @@ git config --list
 
 ```bash
 cd ~/repos/devops-lab
-docker build .
+docker build -t steve727/devcontainer .
 ```
-
-
