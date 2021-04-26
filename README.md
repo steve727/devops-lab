@@ -11,6 +11,8 @@ git config --list
 ```
 [docker installation on debian](https://docs.docker.com/engine/install/debian/)
 
+[my docker notes](https://github.com/steve727/docs/blob/main/docker.md)
+
 ### .devcontainer
 `cat ~/repos/devops-lab/.devcontainer/devcontainer.json`
 
