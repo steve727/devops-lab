@@ -115,3 +115,8 @@ sudo dpkg -i grafana_8.1.3_amd64.deb
 sudo /bin/systemctl enable grafana-server
 sudo /bin/systemctl start grafana-server
 ```
+### [Node Exporter](https://github.com/prometheus/node_exporter)
+```bash
+sudo useradd --no-create-home --shell /bin/false node_exporter
+wget https://github.com/prometheus/node_exporter/releases/download/v1.2.2/node_exporter-1.2.2.linux-amd64.tar.gz
+
