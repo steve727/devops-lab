@@ -107,4 +107,9 @@ sudo systemctl start alertmanager
 sudo systemctl status alertmanager
 sudo systemctl enable alertmanager
 ```
-
+### [Grafana OSS](https://grafana.com/grafana/download/8.1.3?edition=oss)
+```bash
+sudo apt-get install -y adduser libfontconfig1
+wget https://dl.grafana.com/oss/release/grafana_8.1.3_amd64.deb
+sudo dpkg -i grafana_8.1.3_amd64.deb
+```
