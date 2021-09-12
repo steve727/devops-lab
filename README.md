@@ -43,8 +43,18 @@ end
 Install Docker and related packages:
 ```bash
 sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add
- sudo apt-key fingerprint 0EBFCD88
- sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
- sudo apt-get install docker-ce
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+sudo apt-get install docker-ce
+sudo usermod -aG docker vagrant
 ```
+
+```bash
+curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+sudo ./nodesource_setup.sh
+sudo apt-get install -y nodejs
+```
+
+
+
