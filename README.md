@@ -125,8 +125,9 @@ sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
 sudo systemctl daemon-reload
 sudo systemctl start node_exporter
 ```
+
 ### node_exporter.service file:
-```
+```bash
 [Unit]
  Description=Node Exporter
  After=network.target
@@ -140,3 +141,29 @@ sudo systemctl start node_exporter
  [Install]
  WantedBy=multi-user.target
 ```
+
+### cAdvisor:
+```bash
+sudo docker run \
+ --volume=/:/rootfs:ro \
+ --volume=/var/run:/var/run:ro \
+ --volume=/sys:/sys:ro \
+ --volume=/var/lib/docker/:/var/lib/docker:ro \
+ --volume=/dev/disk/:/dev/disk:ro \
+ --publish=8000:8080 \
+ --detach=true \
+ --name=cadvisor \
+ google/cadvisor:latest
+```
+### Add endpoints
+```
+docker ps
+sudo vim /etc/prometheus/prometheus.yml
+
+- job_name: 'node_exporter'
+   static_configs:
+   - targets: ['localhost:9100']
+- job_name: 'cadvisor'
+   static_configs:
+   - targets: ['localhost:8000']
+ ```
