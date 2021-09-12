@@ -50,10 +50,16 @@ sudo apt-get install docker-ce
 sudo usermod -aG docker vagrant
 ```
 
+Install nodejs
 ```bash
 curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
 sudo ./nodesource_setup.sh
 sudo apt-get install -y nodejs
+```
+
+
+```bash
+sudo docker build -t ft-app .
 ```
 
 
