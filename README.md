@@ -56,11 +56,55 @@ curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
 sudo ./nodesource_setup.sh
 sudo apt-get install -y nodejs
 ```
-
-
+Build app container
 ```bash
 sudo docker build -t ft-app .
 ```
+Install Prometheus
+```
+sudo useradd --no-create-home --shell /bin/false prometheus
+sudo mkdir /etc/prometheus
+sudo mkdir /var/lib/prometheus
+sudo chown prometheus:prometheus /var/lib/prometheus
+cd /tmp
+wget https://github.com/prometheus/prometheus/releases/download/v2.29.2/prometheus-2.29.2.linux-amd64.tar.gz
+tar -xvf prometheus-2.29.2.linux-amd64.tar.gz
+cd prometheus-2.29.2.linux-amd64/
+sudo mv console* /etc/prometheus
+sudo mv prometheus.yml /etc/prometheus
+sudo chown -R prometheus:prometheus /etc/prometheus
+sudo mv prometheus /usr/local/bin/
+sudo mv promtool /usr/local/bin/
+sudo chown prometheus:prometheus /usr/local/bin/prometheus
+sudo chown prometheus:prometheus /usr/local/bin/promtool
+sudo vim /etc/systemd/system/prometheus.service
+sudo systemctl daemon-reload
+sudo systemctl start prometheus
+sudo systemctl enable prometheus
+sudo useradd --no-create-home --shell /bin/false alertmanager
+sudo mkdir /etc/alertmanager
+cd /tmp/
+```
+Install alertmanager
+```bash
+wget https://github.com/prometheus/alertmanager/releases/download/v0.23.0/alertmanager-0.23.0.linux-amd64.tar.gz
+tar -xvf alertmanager-0.23.0.linux-amd64.tar.gz
+cd alertmanager-0.23.0.linux-amd64/
+sudo mv alertmanager /usr/local/bin/
+sudo mv amtool /usr/local/bin/
+sudo chown alertmanager:alertmanager /usr/local/bin/alertmanager
+sudo chown alertmanager:alertmanager /usr/local/bin/amtool
+sudo mv alertmanager.yml /etc/alertmanager/
+sudo chown -R alertmanager:alertmanager /etc/alertmanager/
+sudo vim /etc/systemd/system/alertmanager.service
+sudo systemctl stop prometheus
+sudo vim /etc/prometheus/prometheus.yml
 
-
+sudo systemctl daemon-reload
+sudo systemctl start prometheus
+sudo systemctl status prometheus
+sudo systemctl start alertmanager
+sudo systemctl status alertmanager
+sudo systemctl enable alertmanager
+```
 
