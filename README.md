@@ -156,7 +156,7 @@ sudo docker run \
  google/cadvisor:latest
 ```
 ### Add endpoints
-```
+```bash
 docker ps
 sudo vim /etc/prometheus/prometheus.yml
 
@@ -167,3 +167,23 @@ sudo vim /etc/prometheus/prometheus.yml
    static_configs:
    - targets: ['localhost:8000']
  ```
+### Install prom-client via npm
+ ```bash
+  npm install prom-client --save
+  ```
+### vim index.js - add:
+```bash
+var express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
+const prom = require('prom-client');
+
+const collectDefaultMetrics = prom.collectDefaultMetrics;
+collectDefaultMetrics({ prefix: 'forethought' });
+
+app.get('/metrics', async function (req, res) {
+   res.set('Content-Type', prom.register.contentType);
+   res.end(await prom.register.metrics());
+ });
+ ```
+ 
