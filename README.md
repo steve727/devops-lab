@@ -22,9 +22,9 @@ docker build -t steve727/devcontainer .
 docker run steve727/devcontainer
 docker push steve727/devcontainer
 ```
-### DevOps Monitoring Deep Dive (Ubuntu 20.04.03)
+## DevOps Monitoring Deep Dive (Ubuntu 20.04.03)
 
-Example Vagrantfile to spin up an Ubuntu server:
+### Example Vagrantfile to spin up an Ubuntu server:
 ```bash
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -39,8 +39,7 @@ Vagrant.configure("2") do |config|
 
 end
 ```
-
-Install Docker and related packages:
+### Install Docker and related packages:
 ```bash
 sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add
@@ -50,17 +49,17 @@ sudo apt-get install docker-ce
 sudo usermod -aG docker vagrant
 ```
 
-Install nodejs
+### Install nodejs
 ```bash
 curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
 sudo ./nodesource_setup.sh
 sudo apt-get install -y nodejs
 ```
-Build app container
+### Build app container
 ```bash
 sudo docker build -t ft-app .
 ```
-Install Prometheus
+### Install Prometheus
 ```
 sudo useradd --no-create-home --shell /bin/false prometheus
 sudo mkdir /etc/prometheus
@@ -85,7 +84,7 @@ sudo useradd --no-create-home --shell /bin/false alertmanager
 sudo mkdir /etc/alertmanager
 cd /tmp/
 ```
-Install alertmanager
+### Install alertmanager
 ```bash
 wget https://github.com/prometheus/alertmanager/releases/download/v0.23.0/alertmanager-0.23.0.linux-amd64.tar.gz
 tar -xvf alertmanager-0.23.0.linux-amd64.tar.gz
