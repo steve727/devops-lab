@@ -112,4 +112,6 @@ sudo systemctl enable alertmanager
 sudo apt-get install -y adduser libfontconfig1
 wget https://dl.grafana.com/oss/release/grafana_8.1.3_amd64.deb
 sudo dpkg -i grafana_8.1.3_amd64.deb
+sudo /bin/systemctl enable grafana-server
+sudo /bin/systemctl start grafana-server
 ```
